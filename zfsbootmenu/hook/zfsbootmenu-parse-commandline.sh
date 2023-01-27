@@ -204,6 +204,12 @@ if prefer=$( get_zbm_arg zbm.prefer ) ; then
   root="zfsbootmenu:POOL=${prefer}"
 fi
 
+# shellcheck disable=SC2034
+if get_zbm_bool 0 zbm.auto_console ; then
+  zbm_auto_console=1
+  zinfo "enabling automatic console resizing"
+fi
+
 wait_for_zfs=0
 case "${root}" in
   zfsbootmenu:POOL=*)

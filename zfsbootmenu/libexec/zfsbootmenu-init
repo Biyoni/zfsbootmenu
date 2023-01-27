@@ -93,6 +93,17 @@ if [ -d /libexec/early-setup.d ]; then
   unset _hook
 fi
 
+if [ -n "${zbm_auto_console}" ]; then
+  for font in ter-132b ter-128b ter-124b ter-120b ter-116b ; do
+    setfont "${font}"
+
+    if [ "${COLUMNS}" -ge 80 ]; then
+      zdebug "set font to ${font}: ${COLUMNS}"
+      break
+    fi
+  done
+fi
+
 # Prefer a specific pool when checking for a bootfs value
 # shellcheck disable=SC2154
 if [ "${root}" = "zfsbootmenu" ]; then

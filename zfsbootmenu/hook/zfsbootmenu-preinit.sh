@@ -14,6 +14,9 @@ tty_re='/dev/tty[0-9]'
 if ! [[ ${control_term} =~ ${tty_re} ]]; then
   stty rows "${zbm_lines:-25}"
   stty cols "${zbm_columns:-80}"
+
+  # disable zbm_auto_console
+  unset zbm_auto_console
 fi
 
 export BASE="/zfsbootmenu"
@@ -33,6 +36,7 @@ export zbm_sort="${zbm_sort}"
 export zbm_set_hostid="${zbm_set_hostid}"
 export zbm_import_delay="${zbm_import_delay}"
 export zbm_hook_root="${zbm_hook_root}"
+export zbm_auto_console="${zbm_auto_console}"
 export control_term="${control_term}"
 # END additions by zfsbootmenu-preinit.sh
 EOF
